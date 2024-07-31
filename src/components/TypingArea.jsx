@@ -7,7 +7,8 @@ const TypingArea = ({
   mistakes,
   WPM,
   CPM,
-  resetGame
+  resetGame,
+  gameOver
 }) => {
   return (
     <div className="section">
@@ -37,13 +38,14 @@ const TypingArea = ({
           </li>
           <li className="wpm">
             <p>WPM:</p>
-            <span>{Math.round(WPM, 2)}</span>
+            <span>{Math.round(WPM)}</span>
           </li>
           <li className="cpm">
             <p>CPM:</p>
-            <span>{Math.round(CPM, 2)}</span>
+            <span>{Math.round(CPM)}</span>
           </li>
         </ul>
+        {/* {gameOver && <div className="game-over-message">Time's up! Click "Try Again" to restart.</div>} */}
         <button onClick={resetGame} className="btn">Try Again</button>
       </div>
     </div>

@@ -9,6 +9,7 @@ const SpeedTypingGame = () => {
     "The root is the part of the plant that grows underground. The primary root emerges from the embryo and serves to anchor the plant in the soil while absorbing essential minerals and nutrients. There are three main types of roots: tap roots, adventitious roots, and lateral roots. Roots originate from various parts of the plant, not from rhizomes.",
 
     "The stem is the portion of the plant that remains above the ground and grows away from gravity (negatively geotropic). It features internodes and nodes and supports other plant parts such as branches, buds, leaves, petioles, flowers, and inflorescences. The stem's young, newly developed parts are typically green, while mature trees have brown bark. Roots arise from different parts of the plant rather than from rhizomes.",
+
     "A flower is the reproductive part of a plant that produces seeds, which can develop into new plants. Flowers typically consist of four main parts: sepals, petals, stamens, and carpels. The carpels form the female part of the flower. Most flowers are hermaphroditic, containing both male and female components, while others may have only one set of reproductive organs.",
     
     "An aunt is sometimes humorously likened to a bassoon from a particular perspective. Estimations suggest that the melic Myanmar might be less substantial than kutcha. Foods and blowzy bows are often seen as inseparable. The scampish closet may reveal itself as a sclerous llama to those who observe it. A hip is metaphorically referred to as the skirt of a peak. Some hempy laundries are considered orchids. A gum can be viewed as a trumpet from a particular angle. The concept of a freebie flight is likened to a wrench of the mind, and there are various other whimsical notions associated with these terms."
@@ -22,6 +23,7 @@ const SpeedTypingGame = () => {
   const [isTyping, setIsTyping] = useState(false);
   const [WPM, setWPM] = useState(0);
   const [CPM, setCPM] = useState(0);
+  const [gameOver, setGameOver] = useState(false);
 
   const inputRef = useRef(null);
 
@@ -34,8 +36,13 @@ const SpeedTypingGame = () => {
       const timer = setInterval(() => {
         setTimeLeft((prevTime) => {
           const newTime = prevTime - 1;
-          updateMetrics();
-          if (newTime <= 0) setIsTyping(false);
+          if (newTime <= 0) {
+            setIsTyping(false);
+            setGameOver(true);
+            clearInterval(timer);
+          } else {
+            updateMetrics();
+          }
           return newTime;
         });
       }, 1000);
@@ -52,6 +59,7 @@ const SpeedTypingGame = () => {
     setMistakes(0);
     setIsTyping(false);
     setTimeLeft(60);
+    setGameOver(false);
     inputRef.current.focus();
   };
 
@@ -91,6 +99,7 @@ const SpeedTypingGame = () => {
     setWPM(0);
     setCPM(0);
     setTimeLeft(60);
+    setGameOver(false);
     loadNewParagraph();
   };
 
@@ -102,6 +111,7 @@ const SpeedTypingGame = () => {
         className="input-field"
         value={userInput}
         onChange={handleInputChange}
+        disabled={gameOver}
       />
       <TypingArea
         typingText={typingText}
@@ -111,6 +121,7 @@ const SpeedTypingGame = () => {
         WPM={WPM}
         CPM={CPM}
         resetGame={resetGame}
+        gameOver={gameOver}
       />
     </div>
   );
