@@ -1,4 +1,4 @@
-body{
+body {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
@@ -7,118 +7,108 @@ body{
   justify-content: center;
   align-items: center;
   font-family: 'Noto Sans Mono', monospace;
-  background-color: #e7e9e9;
+  background-color: rgb(24, 24, 27); 
 }
 
-.container {
-  max-width: 650px;
-  margin: 5px;
-  width: calc(100% - 10px);
-  padding: 30px;
-  border-radius: 10px;
-  box-sizing: border-box;
-  border: 1px solid #ced4da;
-  background: #fff;
-  box-shadow: 0 0 6px rgba(0,0,0,0.25);
-}
-
-input.input-field{
+input.input-field {
   opacity: 0;
   z-index: -999;
   position: absolute;
 }
 
-#paragraph{
+#paragraph {
   word-break: break-all;
   text-align: left;
+  font-size: 24px; 
+  line-height: 1.5; 
+  color: rgb(113 113 122);
 }
-.section{
-  border: 1px solid #ced4da;
-  border-radius: 5px;
-  padding: 20px;
-  padding-top: 0;
-  color: black;
+
+.section {
+  letter-spacing: 3px;
+  font-size: 24px;
+  line-height: 1.5; 
 }
-.section1{
-  border-bottom: 1px solid #ced4da;
-}
-span{
-  font-size: 20px;
+
+span {
+  font-size: 24px; 
+  line-height: 1.5; 
   user-select: none;
-  cursor: tex;
-}
-span.wrong{
-  color: darkred;
-  background-color: pink;
+  cursor: text;
 }
 
-span.correct{
-  color: #0e630e;
-  background: #e7fbd3;
+span.wrong {
+  color: red;
 }
 
-span.active{
+span.correct {
+  color: #fff;
+}
+
+span.active {
   border-bottom: 3px solid #0a6bf9;
 }
 
-.section2{
+.section2 {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-top: 5px;
+  margin-top: 120px;
 }
-.section2 ul{
+
+.section2 ul {
   padding-inline-start: 0px;
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin: 0px;
-  width: calc(100% - 120px);
+  width: calc(100% - 15px);
 }
 
-.section2 ul li{
+.section2 ul li {
   list-style-type: none;
   margin: 0 10px;
 }
 
-.section2 ul li p{
+.section2 ul li p {
   margin: 5px;
-  font-size: 12px;
+  font-size: 18px; 
+  line-height: 1.5; 
 }
 
-.section2 ul li span{
-  font-size: 18px;
+.section2 ul li span {
+  font-size: 24px; 
+  line-height: 1.5; 
 }
 
 button.btn {
   padding: 10px 20px;
   outline: none;
-  border: 1px solid #ced4da;
-  margin: 5px;
   border-radius: 4px;
   cursor: pointer;
-  background: #1d9bf0;
-  color: #fff;
-  font-size: 16px;
+  background: rgb(161, 222, 161);
+  color: #000;
+  font-size: 18px; 
   transition: all 0.5s;
+  font-weight: 700;
 }
 
-button.btn:hover{
+button.btn:hover {
   background-color: #1879ba;
 }
 
-@media screen and (max-width : 550px){
-  .section2{
-      flex-direction: column;
+@media screen and (max-width: 550px) {
+  .section2 {
+    flex-direction: column;
   }
 
-  .section2 ul{
-      width: 100%;
-      justify-content: space-between;
+  .section2 ul {
+    width: 100%;
+    justify-content: space-between;
   }
 
-  button.btn{
-      width: 100%;
-      margin-top: 10px;
+  button.btn {
+    width: 100%;
+    margin-top: 10px;
   }
 }

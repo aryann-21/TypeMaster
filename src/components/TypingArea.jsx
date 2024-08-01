@@ -5,11 +5,24 @@ const TypingArea = ({
   userInput,
   timeLeft,
   mistakes,
-  WPM,
-  CPM,
   resetGame,
   gameOver
 }) => {
+  const countWords = (text) => {
+    return text.trim().split(/\s+/).length;
+  };
+
+  const correctWords = countWords(
+    typingText.slice(0, userInput.length).split("").filter((char, index) => char === userInput[index]).join("")
+  );
+
+  const correctChars = userInput.split("").filter((char, index) => typingText[index] === char).length;
+
+  const elapsedTime = (60 - timeLeft) / 60;
+
+  const WPM = elapsedTime > 0 ? (correctWords / elapsedTime) : 0;
+  const CPM = elapsedTime > 0 ? (correctChars / elapsedTime) : 0;
+
   return (
     <div className="section">
       <div className="section1">
@@ -44,9 +57,9 @@ const TypingArea = ({
             <p>CPM:</p>
             <span>{Math.round(CPM)}</span>
           </li>
+          <button onClick={resetGame} className="btn">Try Again</button>
         </ul>
         {/* {gameOver && <div className="game-over-message">Time's up! Click "Try Again" to restart.</div>} */}
-        <button onClick={resetGame} className="btn">Try Again</button>
       </div>
     </div>
   );
