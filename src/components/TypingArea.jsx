@@ -24,44 +24,46 @@ const TypingArea = ({
   const CPM = elapsedTime > 0 ? (correctChars / elapsedTime) : 0;
 
   return (
-    <div className="section">
-      <div className="section1">
-        <p id="paragraph">
-          {typingText.split('').map((char, index) => (
-            <span
-              key={index}
-              className={`char ${userInput[index] === char ? "correct" : ""} ${
-                userInput[index] !== char && userInput[index] !== undefined ? "wrong" : ""
-              } ${index === userInput.length ? "active" : ""}`}
-            >
-              {char}
-            </span>
-          ))}
-        </p>
+    <>
+      <div className="section">
+        <div className="section1">
+          <p id="paragraph">
+            {typingText.split('').map((char, index) => (
+              <span
+                key={index}
+                className={`char ${userInput[index] === char ? "correct" : ""} ${
+                  userInput[index] !== char && userInput[index] !== undefined ? "wrong" : ""
+                } ${index === userInput.length ? "active" : ""}`}
+              >
+                {char}
+              </span>
+            ))}
+          </p>
+        </div>
+        <div className="section2">
+          <ul className="resultDetails">
+            <li className="time">
+              <p>Time Left:</p>
+              <span><b>{timeLeft}</b>s</span>
+            </li>
+            <li className="mistake">
+              <p>Mistakes:</p>
+              <span>{mistakes}</span>
+            </li>
+            <li className="wpm">
+              <p>WPM:</p>
+              <span>{Math.round(WPM)}</span>
+            </li>
+            <li className="cpm">
+              <p>CPM:</p>
+              <span>{Math.round(CPM)}</span>
+            </li>
+            <button onClick={resetGame} className="btn">Try Again</button>
+          </ul>
+        </div>
       </div>
-      <div className="section2">
-        <ul className="resultDetails">
-          <li className="time">
-            <p>Time Left:</p>
-            <span><b>{timeLeft}</b>s</span>
-          </li>
-          <li className="mistake">
-            <p>Mistakes:</p>
-            <span>{mistakes}</span>
-          </li>
-          <li className="wpm">
-            <p>WPM:</p>
-            <span>{Math.round(WPM)}</span>
-          </li>
-          <li className="cpm">
-            <p>CPM:</p>
-            <span>{Math.round(CPM)}</span>
-          </li>
-          <button onClick={resetGame} className="btn">Try Again</button>
-        </ul>
-        {/* {gameOver && <div className="game-over-message">Time's up! Click "Try Again" to restart.</div>} */}
-      </div>
-    </div>
+      {/* {gameOver && <div className="game-over-message">Time's up! Click "Try Again" to restart.</div>} */}
+    </>  
   );
 };
 

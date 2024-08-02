@@ -67,25 +67,28 @@ const SpeedTypingGame = () => {
     if (!isTyping) setIsTyping(true);
 
     const typedText = e.target.value;
-    setUserInput(typedText);
+    const currentChar = typingText[typedText.length - 1];
 
-    if (typedText.length > 0) {
-      const currentChar = typingText[charIndex];
-      if (typedText[typedText.length - 1] === currentChar) {
-        setCharIndex((prevIndex) => prevIndex + 1);
-        if (charIndex === typingText.length - 1) {
-          setIsTyping(false);
-        }
-      } else {
+    // Check if the current input matches the expected character
+    if (typedText.length > charIndex) {
+      if (typedText[charIndex] !== typingText[charIndex]) {
         setMistakes((prevMistakes) => prevMistakes + 1);
       }
-      updateMetrics();
+      setCharIndex((prevIndex) => prevIndex + 1);
+    } else if (typedText.length < charIndex) {
+      // If the user backspaces, adjust the character index and mistakes
+      setCharIndex((prevIndex) => prevIndex - 1);
+      if (mistakes > 0 && typedText[charIndex - 1] === typingText[charIndex - 1]) {
+        setMistakes((prevMistakes) => prevMistakes - 1);
+      }
     }
+
+    setUserInput(typedText);
+    updateMetrics();
   };
 
   const updateMetrics = () => {
     const correctChars = charIndex - mistakes;
-    const totalChars = typingText.length;
     const elapsedTime = 60 - timeLeft;
 
     setCPM((correctChars / (elapsedTime / 60)) || 0);

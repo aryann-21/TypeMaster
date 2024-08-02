@@ -46,7 +46,7 @@ span.correct {
 }
 
 span.active {
-  border-bottom: 3px solid #0a6bf9;
+  border-bottom: 3px solid rgb(79, 209, 79);
 }
 
 .section2 {
@@ -94,7 +94,7 @@ button.btn {
 }
 
 button.btn:hover {
-  background-color: #1879ba;
+  background-color: rgb(134, 228, 134);
 }
 
 @media screen and (max-width: 550px) {
